@@ -1,5 +1,14 @@
 # try-serverless-framework
 
+## はじめに
+serverless frameworkを使おうと思った時に、日本語の記事があまり見つからなかったので残します。
+
+serverless framework
+https://www.serverless.com/
+
+serverless offline
+https://github.com/dherault/serverless-offline
+
 ## 前提
 
 AWS CLIが使えること
@@ -144,3 +153,6 @@ plugins:
 4. lambdaの実行
 `aws lambda invoke /dev/null --endpoint-url http://localhost:3002 --function-name try-serverless-framework-dev-hello `
 
+## 終わりに
+今までは、コンソールでポチポチ設定していたものがコードで管理できるようになったので良かったです。
+CloudFormationやterraformにもいつか挑戦してみたいです。
