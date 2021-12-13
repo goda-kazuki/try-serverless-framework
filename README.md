@@ -91,10 +91,10 @@ custom:
 ```yaml
 resources:
   Resources:
-    sisCustomerLambdaRole:
+     tryServerlessFrameworkLambdaRole:
       Type: AWS::IAM::Role
       Properties:
-        RoleName: sis-customer-api-${opt:stage, self:provider.stage}-lambdaRole
+        RoleName: try-serverless-framework-${opt:stage, self:provider.stage}-lambdaRole
         AssumeRolePolicyDocument:
           Version: '2012-10-17'
           Statement:
@@ -115,5 +115,15 @@ resources:
 ```yaml
 provider:
   iam:
-    role: sisCustomerLambdaRole
+    role: tryServerlessFrameworkLambdaRole
+```
+
+### S3バケットの作成
+```yaml
+resources:
+   Resources:
+    Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: try-serverless-framework-${opt:stage, self:provider.stage}-image-buckets
 ```

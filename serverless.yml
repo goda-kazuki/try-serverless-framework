@@ -15,6 +15,9 @@ provider:
     subnetIds:
       - ${self:custom.otherfile.environment.${self:provider.stage}.LAMBDA_VPC_SUBNET_ID}
 
+  iam:
+    role: tryServerlessFrameworkLambdaRole
+
 functions:
   hello:
     handler: handler.hello
@@ -27,3 +30,24 @@ custom:
     environment:
       dev: ${file(./config/dev.yml)}
       prd: ${file(./config/prd.yml)}
+
+resources:
+  Resources:
+    tryServerlessFrameworkLambdaRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: try-serverless-framework-${opt:stage, self:provider.stage}-lambdaRole
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com
+              Action: sts:AssumeRole
+        ManagedPolicyArns:
+          - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+          - "arn:aws:iam::aws:policy/AWSLambda_FullAccess"
+          - "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
+          - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+          - "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
