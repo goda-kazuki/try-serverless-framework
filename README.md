@@ -1,5 +1,3 @@
-# try-serverless-framework
-
 ## はじめに
 serverless frameworkを使おうと思った時に、日本語の記事があまり見つからなかったので残します。
 
