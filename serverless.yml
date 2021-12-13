@@ -51,3 +51,7 @@ resources:
           - "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
           - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
           - "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+    Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: try-serverless-framework-${opt:stage, self:provider.stage}-image-buckets
