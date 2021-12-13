@@ -44,3 +44,21 @@ functions:
       CONFIG: "CONFIGの内容"
 ```
 
+### ステージによって環境変数を分けたい時
+開発環境と本番環境で環境変数を分けたい時ってあると思いますが、そういった設定も可能です。
+1. configの中にdevとprdの環境設定ファイルを用意しておきます。
+
+2. stageの設定を行います。
+`stage: ${opt:stage, self:custom.defaultStage}`
+3. 環境変数のファイルの場所を設定します。
+```yaml
+custom:
+  defaultStage: dev
+  otherfile:
+    environment:
+      dev: ${file(./config/dev.yml)}
+      prd: ${file(./config/prd.yml)}
+```
+
+4. デプロイします
+`npx sls deploy --stage prd`
