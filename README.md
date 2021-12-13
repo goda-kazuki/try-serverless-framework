@@ -85,3 +85,35 @@ custom:
     subnetIds:
       - ${self:custom.otherfile.environment.${self:provider.stage}.LAMBDA_VPC_SUBNET_ID}
 ```
+
+### IAM Roleの作成と紐付け
+1. resourceにIAM Roleを作成するように設定
+```yaml
+resources:
+  Resources:
+    sisCustomerLambdaRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: sis-customer-api-${opt:stage, self:provider.stage}-lambdaRole
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com
+              Action: sts:AssumeRole
+        ManagedPolicyArns:
+          - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+          - "arn:aws:iam::aws:policy/AWSLambda_FullAccess"
+          - "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
+          - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+          - "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+```
+
+2. 作成したRoleを使うように設定
+```yaml
+provider:
+  iam:
+    role: sisCustomerLambdaRole
+```
