@@ -55,3 +55,5 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: try-serverless-framework-${opt:stage, self:provider.stage}-image-buckets
+plugins:
+  - serverless-offline

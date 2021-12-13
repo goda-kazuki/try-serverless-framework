@@ -127,3 +127,20 @@ resources:
       Properties:
         BucketName: try-serverless-framework-${opt:stage, self:provider.stage}-image-buckets
 ```
+
+### ローカルで開発したい場合(serverless-offline)
+1. serverless-offlineのインストール
+`npm install serverless-offline --save-dev`
+
+2. serverless-offlineを使用するように記述
+```yaml
+plugins:
+  - serverless-offline
+```
+
+3. serverless offline起動
+`npx serverless offline`
+
+4. lambdaの実行
+`aws lambda invoke /dev/null --endpoint-url http://localhost:3002 --function-name try-serverless-framework-dev-hello `
+
