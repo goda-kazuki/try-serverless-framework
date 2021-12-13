@@ -1,0 +1,22 @@
+{
+  "name": "try-serverless-framework",
+  "version": "1.0.0",
+  "description": "serverless frameworkのインストール `npm install serverless`",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goda-kazuki/try-serverless-framework.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goda-kazuki/try-serverless-framework/issues"
+  },
+  "homepage": "https://github.com/goda-kazuki/try-serverless-framework#readme",
+  "dependencies": {
+    "serverless": "^2.68.0"
+  }
+}
